@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Zap, Shield, Image as ImageIcon, ArrowRight, Play, Star } from 'lucide-react';
+import { Sparkles, Zap, Shield, Image as ImageIcon, ArrowRight, Play, Star, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
@@ -29,7 +29,7 @@ const Home = () => {
 
             <h1 className="text-6xl md:text-8xl xl:text-9xl font-black mb-8 leading-[0.9] tracking-tighter">
               IGNITE YOUR <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple via-brand-red to-brand-purple bg-[length:200%_auto] animate-gradient text-glow-purple">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple via-brand-red to-brand-purple bg-[length:200%_auto] animate-gradient text-glow-purple italic">
                 AESTHETIC
               </span>
             </h1>
@@ -57,20 +57,20 @@ const Home = () => {
         <div className="mt-32 max-w-[1400px] mx-auto">
           <div className="flex items-end justify-between mb-12 px-4">
             <div>
-              <h2 className="text-3xl font-black tracking-tighter mb-2 italic">TRENDING <span className="text-brand-purple">NOW</span></h2>
-              <div className="h-1 w-20 bg-brand-purple rounded-full" />
+              <h2 className="text-4xl font-black tracking-tighter mb-2 italic">TRENDING <span className="text-brand-purple">NOW</span></h2>
+              <div className="h-1.5 w-24 bg-brand-purple rounded-full" />
             </div>
             <Link to="/gallery" className="flex items-center gap-2 text-sm font-black text-brand-purple hover:text-white transition-colors group">
-              VIEW FULL COLLECTION <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+              VIEW FULL COLLECTION <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
             {[
-              { title: 'Cyber Assassin', cat: 'Cyberpunk', url: 'https://images.unsplash.com/photo-1614728263952-84ea206f25ab?q=80&w=800' },
-              { title: 'Ghost Ronin', cat: 'Samurai', url: 'https://images.unsplash.com/photo-1578632738981-4330c709e135?q=80&w=800' },
-              { title: 'Neon Valkyrie', cat: 'Fantasy', url: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800' },
-              { title: 'Void Engine', cat: 'Mecha', url: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800' }
+              { title: 'Neon Samurai', cat: 'Samurai', url: 'https://images.unsplash.com/photo-1580234797602-22c37b2a6230?q=80&w=800&auto=format&fit=crop' },
+              { title: 'Cyber Maiden', cat: 'Cyberpunk', url: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop' },
+              { title: 'Void Wanderer', cat: 'Fantasy', url: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=800&auto=format&fit=crop' },
+              { title: 'Neural Link', cat: 'Mecha', url: 'https://images.unsplash.com/photo-1504333638930-c8787321eba0?q=80&w=800&auto=format&fit=crop' }
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -78,15 +78,15 @@ const Home = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="aspect-[3/4] rounded-3xl bg-brand-black border border-white/5 overflow-hidden relative group glow-hover-purple"
+                className="aspect-[3/4] rounded-[32px] bg-brand-black border border-white/5 overflow-hidden relative group glow-hover-purple shadow-2xl"
               >
-                 <img src={item.url} className="absolute inset-0 w-full h-full object-cover grayscale-[50%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" alt="" />
-                 <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80" />
+                 <img src={item.url} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-110" alt={item.title} />
+                 <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/20 to-transparent opacity-80" />
                  <div className="absolute bottom-8 left-8">
-                    <p className="text-[10px] font-black text-brand-purple uppercase tracking-widest mb-1">{item.cat}</p>
-                    <h3 className="text-xl font-black">{item.title}</h3>
+                    <p className="text-[10px] font-black text-brand-purple uppercase tracking-[0.3em] mb-2">{item.cat}</p>
+                    <h3 className="text-2xl font-black tracking-tighter leading-none">{item.title}</h3>
                  </div>
-                 <div className="absolute top-6 right-6 glass-premium px-3 py-1.5 rounded-full text-[10px] font-black tracking-tighter">
+                 <div className="absolute top-6 right-6 glass-premium px-3 py-1.5 rounded-full text-[9px] font-black tracking-widest text-brand-purple border-brand-purple/20 shadow-2xl">
                     NEW RELEASE
                  </div>
               </motion.div>
@@ -96,31 +96,30 @@ const Home = () => {
       </section>
 
       {/* Features - Premium Look */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-white/[0.02] -skew-y-3 transform origin-right" />
+      <section className="py-32 relative overflow-hidden bg-white/[0.01]">
         <div className="max-w-7xl mx-auto px-6 relative">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            <div className="group p-10 glass-premium rounded-[40px] transition-all hover:-translate-y-2">
-              <div className="w-16 h-16 bg-brand-purple/20 rounded-2xl flex items-center justify-center text-brand-purple mb-8 group-hover:scale-110 transition-transform">
-                <Zap className="w-8 h-8 glow-purple rounded-full" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+            <div className="group p-10 glass-premium rounded-[40px] transition-all hover:-translate-y-2 border-white/10 hover:border-brand-purple/30">
+              <div className="w-16 h-16 bg-brand-purple/10 rounded-2xl flex items-center justify-center text-brand-purple mb-8 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(139,92,246,0.2)]">
+                <Zap className="w-8 h-8 fill-current" />
               </div>
-              <h3 className="text-2xl font-black mb-4">ULTRA-FAST FORGE</h3>
+              <h3 className="text-2xl font-black mb-4 tracking-tighter">ULTRA-FAST FORGE</h3>
               <p className="text-gray-400 leading-relaxed font-medium">Our proprietary clusters generate complex anime assets in under 5 seconds. Speed meets precision.</p>
             </div>
 
-            <div className="group p-10 glass-premium rounded-[40px] transition-all hover:-translate-y-2 md:translate-y-8">
-              <div className="w-16 h-16 bg-brand-red/20 rounded-2xl flex items-center justify-center text-brand-red mb-8 group-hover:scale-110 transition-transform">
-                <Shield className="w-8 h-8 glow-red rounded-full" />
+            <div className="group p-10 glass-premium rounded-[40px] transition-all hover:-translate-y-2 md:translate-y-8 border-white/10 hover:border-brand-red/30">
+              <div className="w-16 h-16 bg-brand-red/10 rounded-2xl flex items-center justify-center text-brand-red mb-8 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(239,68,68,0.2)]">
+                <Shield className="w-8 h-8 fill-current" />
               </div>
-              <h3 className="text-2xl font-black mb-4">IRONCLAD RIGHTS</h3>
+              <h3 className="text-2xl font-black mb-4 tracking-tighter">IRONCLAD RIGHTS</h3>
               <p className="text-gray-400 leading-relaxed font-medium">Every generation is unique. Elite members receive full blockchain-verified commercial rights.</p>
             </div>
 
-            <div className="group p-10 glass-premium rounded-[40px] transition-all hover:-translate-y-2">
-              <div className="w-16 h-16 bg-brand-purple/20 rounded-2xl flex items-center justify-center text-brand-purple mb-8 group-hover:scale-110 transition-transform">
-                <ImageIcon className="w-8 h-8 glow-purple rounded-full" />
+            <div className="group p-10 glass-premium rounded-[40px] transition-all hover:-translate-y-2 border-white/10 hover:border-brand-purple/30">
+              <div className="w-16 h-16 bg-brand-purple/10 rounded-2xl flex items-center justify-center text-brand-purple mb-8 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(139,92,246,0.2)]">
+                <ImageIcon className="w-8 h-8 fill-current" />
               </div>
-              <h3 className="text-2xl font-black mb-4">QUANTUM UPSCALE</h3>
+              <h3 className="text-2xl font-black mb-4 tracking-tighter">QUANTUM UPSCALE</h3>
               <p className="text-gray-400 leading-relaxed font-medium">Native 8K resolution with zero artifacting. Optimized for everything from mobile to IMAX screens.</p>
             </div>
           </div>
@@ -128,15 +127,16 @@ const Home = () => {
       </section>
 
       {/* Ticker / CTA */}
-      <section className="py-20 border-t border-white/5 bg-brand-purple">
-        <div className="flex overflow-hidden whitespace-nowrap">
+      <section className="py-24 border-t border-white/5 bg-brand-purple relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+        <div className="flex overflow-hidden whitespace-nowrap relative z-10">
            <div className="flex animate-marquee items-center">
              {[1,2,3,4,5,6,7,8].map(i => (
-               <div key={i} className="flex items-center gap-10 mx-10 text-brand-black font-black text-4xl italic">
+               <div key={i} className="flex items-center gap-10 mx-10 text-brand-black font-black text-5xl italic tracking-tighter">
                  <span>READY TO FORGE?</span>
-                 <Sparkles className="w-8 h-8" />
+                 <Sparkles className="w-10 h-10 fill-current" />
                  <span>UNLIMITED POWER</span>
-                 <Star className="w-8 h-8" />
+                 <Star className="w-10 h-10 fill-current" />
                </div>
              ))}
            </div>
