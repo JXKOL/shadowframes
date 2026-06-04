@@ -5,22 +5,22 @@ import { Filter, Download, Heart, Eye, Share2, Sparkles, ShieldCheck, Zap } from
 const CATEGORIES = ['All', 'Cyberpunk', 'Samurai', 'Fantasy', 'Demons', 'Neon City', 'Mecha'];
 
 const WALLPAPERS = [
-  { id: 1, title: 'Neon Oni', category: 'Cyberpunk', premium: true, likes: '2.4k', views: '12k', url: 'https://images.unsplash.com/photo-1614728263952-84ea206f25ab?q=80&w=800&auto=format&fit=crop' },
-  { id: 2, title: 'Void Blade', category: 'Samurai', premium: false, likes: '1.2k', views: '5k', url: 'https://images.unsplash.com/photo-1578632738981-4330c709e135?q=80&w=800&auto=format&fit=crop' },
-  { id: 3, title: 'Cyber Maiden', category: 'Cyberpunk', premium: true, likes: '3.1k', views: '15k', url: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop' },
-  { id: 4, title: 'Celestial Art', category: 'Fantasy', premium: false, likes: '4.5k', views: '20k', url: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=800&auto=format&fit=crop' },
-  { id: 5, title: 'Demon Core', category: 'Demons', premium: true, likes: '1.8k', views: '9k', url: 'https://images.unsplash.com/photo-1555680202-c86f0e12f086?q=80&w=800&auto=format&fit=crop' },
-  { id: 6, title: 'Arcane Rift', category: 'Fantasy', premium: false, likes: '2.1k', views: '8k', url: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop' },
-  { id: 7, title: 'Neural Ronin', category: 'Mecha', premium: true, likes: '5.2k', views: '25k', url: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop' },
-  { id: 8, title: 'Neo Tokyo', category: 'Neon City', premium: false, likes: '3.8k', views: '14k', url: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=800&auto=format&fit=crop' },
-  { id: 9, title: 'Cyber Geisha', category: 'Cyberpunk', premium: true, likes: '6.7k', views: '30k', url: 'https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?q=80&w=800&auto=format&fit=crop' },
-  { id: 10, title: 'Crimson Temple', category: 'Samurai', premium: false, likes: '1.4k', views: '6k', url: 'https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?q=80&w=800&auto=format&fit=crop' },
-  { id: 11, title: 'Digital Abyss', category: 'Cyberpunk', premium: true, likes: '1.1k', views: '4k', url: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800&auto=format&fit=crop' },
-  { id: 12, title: 'Star Kingdom', category: 'Fantasy', premium: false, likes: '2.9k', views: '11k', url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop' },
-  { id: 13, title: 'Cyber Mask', category: 'Demons', premium: true, likes: '4.2k', views: '18k', url: 'https://images.unsplash.com/photo-1533107862482-0e6974b06ec4?q=80&w=800&auto=format&fit=crop' },
-  { id: 14, title: 'Iron Soul', category: 'Mecha', premium: false, likes: '1.5k', views: '7k', url: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=800&auto=format&fit=crop' },
-  { id: 15, title: 'Prism Flux', category: 'Neon City', premium: true, likes: '950', views: '4k', url: 'https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=800&auto=format&fit=crop' },
-  { id: 16, title: 'Cyber Alley', category: 'Cyberpunk', premium: false, likes: '3.3k', views: '13k', url: 'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=800&auto=format&fit=crop' },
+  { id: 1, title: 'Neon Oni', category: 'Cyberpunk', premium: true, likes: '2.4k', views: '12k', url: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=1000&auto=format&fit=crop' },
+  { id: 2, title: 'Void Blade', category: 'Samurai', premium: false, likes: '1.2k', views: '5k', url: 'https://images.unsplash.com/photo-1514467950441-249876274472?q=80&w=1000&auto=format&fit=crop' },
+  { id: 3, title: 'Cyber Maiden', category: 'Cyberpunk', premium: true, likes: '3.1k', views: '15k', url: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop' },
+  { id: 4, title: 'Celestial Art', category: 'Fantasy', premium: false, likes: '4.5k', views: '20k', url: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1000&auto=format&fit=crop' },
+  { id: 5, title: 'Demon Core', category: 'Demons', premium: true, likes: '1.8k', views: '9k', url: 'https://images.unsplash.com/photo-1555680202-c86f0e12f086?q=80&w=1000&auto=format&fit=crop' },
+  { id: 6, title: 'Arcane Rift', category: 'Fantasy', premium: false, likes: '2.1k', views: '8k', url: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000&auto=format&fit=crop' },
+  { id: 7, title: 'Neural Ronin', category: 'Mecha', premium: true, likes: '5.2k', views: '25k', url: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop' },
+  { id: 8, title: 'Neo Tokyo', category: 'Neon City', premium: false, likes: '3.8k', views: '14k', url: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1000&auto=format&fit=crop' },
+  { id: 9, title: 'Cyber Geisha', category: 'Cyberpunk', premium: true, likes: '6.7k', views: '30k', url: 'https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?q=80&w=1000&auto=format&fit=crop' },
+  { id: 10, title: 'Crimson Temple', category: 'Samurai', premium: false, likes: '1.4k', views: '6k', url: 'https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?q=80&w=1000&auto=format&fit=crop' },
+  { id: 11, title: 'Digital Abyss', category: 'Cyberpunk', premium: true, likes: '1.1k', views: '4k', url: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop' },
+  { id: 12, title: 'Star Kingdom', category: 'Fantasy', premium: false, likes: '2.9k', views: '11k', url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop' },
+  { id: 13, title: 'Cyber Mask', category: 'Demons', premium: true, likes: '4.2k', views: '18k', url: 'https://images.unsplash.com/photo-1533107862482-0e6974b06ec4?q=80&w=1000&auto=format&fit=crop' },
+  { id: 14, title: 'Iron Soul', category: 'Mecha', premium: false, likes: '1.5k', views: '7k', url: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1000&auto=format&fit=crop' },
+  { id: 15, title: 'Prism Flux', category: 'Neon City', premium: true, likes: '950', views: '4k', url: 'https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=1000&auto=format&fit=crop' },
+  { id: 16, title: 'Cyber Alley', category: 'Cyberpunk', premium: false, likes: '3.3k', views: '13k', url: 'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=1000&auto=format&fit=crop' },
 ];
 
 const Gallery = () => {
@@ -99,6 +99,9 @@ const Gallery = () => {
                 alt={wp.title}
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+                onError={(e) => {
+                  e.target.src = 'https://images.unsplash.com/photo-1614728263952-84ea206f25ab?q=80&w=1000&auto=format&fit=crop';
+                }}
               />
               
               {/* Overlays */}
