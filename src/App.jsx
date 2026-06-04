@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Pricing from './pages/Pricing';
 import Gallery from './pages/Gallery';
@@ -24,10 +25,7 @@ function App() {
             <Route path="/signup" element={<Auth mode="signup" />} />
           </Routes>
         </main>
-        
-        <footer className="py-12 border-t border-white/5 bg-brand-black/50 text-center text-gray-500 text-sm">
-          <p>© 2024 ShadowFrames. Powered by AI Artistry.</p>
-        </footer>
+        <Footer />
       </div>
     </Router>
   );
