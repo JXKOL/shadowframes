@@ -1,23 +1,19 @@
 <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stopColor="#8b5cf6" />
-      <stop offset="100%" stopColor="#ef4444" />
+      <stop offset="0%" stopColor="#a855f7" />
+      <stop offset="100%" stopColor="#6366f1" />
     </linearGradient>
   </defs>
   <path
-    d="M50 5L15 20V45C15 67.5 50 95 50 95C50 95 85 67.5 85 45V20L50 5Z"
+    d="M50 5L88 27V73L50 95L12 73V27L50 5Z"
     fill="#0f172a"
     stroke="url(#logo-gradient)"
     strokeWidth="8"
     strokeLinejoin="round"
   />
-  <text
-    x="50%"
-    y="58%"
-    dominantBaseline="middle"
-    textAnchor="middle"
-    fill="url(#logo-gradient)"
-    style="font-family: system-ui, sans-serif; font-weight: 900; font-size: 38px; letter-spacing: -2px;"
-  >SF</text>
+  <g transform="translate(25, 35)">
+    <path d="M20 0H5L0 5V12L5 17H15L20 22V29L15 34H0" stroke="white" strokeWidth="6" />
+    <path d="M30 34V0H50M30 17H45" stroke="url(#logo-gradient)" strokeWidth="6" />
+  </g>
 </svg>
