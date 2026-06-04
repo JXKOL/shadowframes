@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, Search, User, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { Search, User, Menu, X } from 'lucide-react';
+import Logo from './Logo';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="flex items-center justify-between px-6 py-4 bg-brand-black/80 backdrop-blur-md sticky top-0 z-50 border-b border-brand-purple/20">
-      <div className="flex items-center gap-2">
-        <div className="p-2 bg-brand-purple rounded-lg glow-purple">
-          <Camera className="text-white w-6 h-6" />
-        </div>
-        <Link to="/" className="text-2xl font-bold tracking-tighter text-glow-purple">
-          SHADOW<span className="text-brand-purple">FRAMES</span>
+      <div className="flex items-center gap-3">
+        <Logo className="w-9 h-9" />
+        <Link to="/" className="text-2xl font-black tracking-tighter text-white">
+          SHADOW<span className="text-brand-purple text-glow-purple italic">FRAMES</span>
         </Link>
       </div>
 
