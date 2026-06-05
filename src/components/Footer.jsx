@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Github, MessageSquare, Music2, Shield, Sparkles } from 'lucide-react';
+import { Globe, Music2, MessageSquare, Shield, Sparkles } from 'lucide-react';
 import Logo from './Logo';
 
 const Footer = () => {
@@ -24,7 +24,7 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a href="#" className="p-2.5 bg-white/5 rounded-xl text-gray-400 hover:text-brand-purple hover:bg-brand-purple/10 transition-all border border-white/5 hover:border-brand-purple/20">
-                <Instagram className="w-5 h-5" />
+                <Globe className="w-5 h-5" />
               </a>
               <a href="#" className="p-2.5 bg-white/5 rounded-xl text-gray-400 hover:text-brand-purple hover:bg-brand-purple/10 transition-all border border-white/5 hover:border-brand-purple/20">
                 <Music2 className="w-5 h-5" />
