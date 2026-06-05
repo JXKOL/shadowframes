@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Filter, Download, Heart, Eye, Share2, Sparkles, ShieldCheck, Zap } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const CATEGORIES = ['All', 'Cyberpunk', 'Samurai', 'Fantasy', 'Demons', 'Neon City', 'Mecha'];
 
@@ -32,6 +33,11 @@ const Gallery = () => {
 
   return (
     <div className="pt-24 pb-20 px-6 max-w-[1600px] mx-auto min-h-screen">
+      <SEO 
+        title="Shadow Archive - AI Anime Wallpapers" 
+        description="Explore the Shadow Archive. Thousands of high-resolution AI-generated anime wallpapers featuring cyberpunk, samurai, and futuristic themes."
+        keywords="anime gallery, AI art gallery, cyberpunk art, samurai wallpapers, 4k anime backgrounds"
+      />
       {/* Header Section */}
       <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
         <motion.div 

@@ -2,10 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Zap, Shield, Image as ImageIcon, ArrowRight, Play, Star, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const Home = () => {
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Forge Your Anime Aesthetic" 
+        description="ShadowFrames is the premier AI-powered anime wallpaper platform. Generate high-fidelity cyberpunk art and futuristic anime wallpapers for your desktop and mobile."
+      />
       {/* Dynamic Background */}
       <div className="fixed inset-0 -z-20 bg-brand-black overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-brand-purple/10 blur-[120px] animate-pulse" />

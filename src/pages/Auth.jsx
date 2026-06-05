@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Lock, User, ArrowRight, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const Auth = ({ mode = 'login' }) => {
   const [isLogin, setIsLogin] = useState(mode === 'login');
 
   return (
     <div className="pt-24 pb-20 px-6 flex items-center justify-center min-h-[80vh]">
+      <SEO 
+        title={isLogin ? "Login - Access Your Collection" : "Sign Up - Join the Forge"} 
+        description="Access your ShadowFrames account to manage your AI anime art collection, save favorites, and unlock premium features."
+      />
       <div className="w-full max-w-md">
         <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl">
           <div className="text-center mb-8">

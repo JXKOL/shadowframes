@@ -37,6 +37,10 @@ const Pricing = () => {
 
   return (
     <div className="pt-24 pb-20 px-6 max-w-6xl mx-auto">
+      <SEO 
+        title="Premium Access - Unlock the Forge" 
+        description="Upgrade to ShadowFrames Premium. Get unlimited high-fidelity AI generations, exclusive early access to new models, and ad-free downloads."
+      />
       <div className="text-center mb-16">
         <h1 className="text-4xl font-black tracking-tighter mb-4">
           CHOOSE YOUR <span className="text-brand-purple">FRAME</span>

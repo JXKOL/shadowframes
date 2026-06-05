@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MessageSquare, Send, MapPin, Phone } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -12,6 +13,10 @@ const Contact = () => {
 
   return (
     <div className="pt-24 pb-20 px-6 max-w-4xl mx-auto">
+      <SEO 
+        title="Contact Us - Support & Feedback" 
+        description="Have questions or feedback? Contact the ShadowFrames team for support, feature requests, or partnership inquiries."
+      />
       <div className="text-center mb-16">
         <h1 className="text-4xl font-black tracking-tighter mb-4">
           GET IN <span className="text-brand-purple">TOUCH</span>

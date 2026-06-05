@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Wand2, Sparkles, RefreshCcw, Download, Share2, Info, Layers, Zap } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Generate = () => {
   const [prompt, setPrompt] = useState('');
@@ -20,6 +21,11 @@ const Generate = () => {
 
   return (
     <div className="pt-28 pb-20 px-6 max-w-7xl mx-auto">
+      <SEO 
+        title="AI Forge - Generate Custom Anime Art" 
+        description="Use the ShadowForge AI Studio to generate your own custom, high-fidelity anime wallpapers. Input your vision and watch our neural engine create art in seconds."
+        keywords="AI anime generator, custom anime wallpaper, neural art engine, create anime art, ShadowForge"
+      />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Controls */}
         <div className="lg:col-span-5 space-y-8">
