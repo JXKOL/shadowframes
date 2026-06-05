@@ -12,6 +12,12 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     copyPublicDir: true,
+    assetsDir: 'assets',
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+      }
+    }
   },
   server: {
     allowedHosts: true
