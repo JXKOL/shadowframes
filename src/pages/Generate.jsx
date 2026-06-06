@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Wand2, Sparkles, RefreshCcw, Download, Share2, Info, Layers, Zap } from 'lucide-react';
 import SEO from '../components/SEO';

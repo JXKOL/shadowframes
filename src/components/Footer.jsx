@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { Globe, Music2, MessageSquare, Shield, Sparkles } from 'lucide-react';
 import Logo from './Logo';

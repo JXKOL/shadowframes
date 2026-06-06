@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { Mail, Lock, User, ArrowRight, Shield } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 
 const Auth = ({ mode = 'login' }) => {

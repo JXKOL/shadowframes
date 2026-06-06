@@ -1,0 +1,258 @@
+[1mdiff --git a/package-lock.json b/package-lock.json[m
+[1mindex c9fa9c1..520b1dd 100644[m
+[1m--- a/package-lock.json[m
+[1m+++ b/package-lock.json[m
+[36m@@ -14,6 +14,7 @@[m
+         "lucide-react": "^1.17.0",[m
+         "react": "^19.2.6",[m
+         "react-dom": "^19.2.6",[m
+[32m+[m[32m        "react-helmet-async": "^3.0.0",[m
+         "react-router-dom": "^7.16.0"[m
+       },[m
+       "devDependencies": {[m
+[36m@@ -2140,6 +2141,15 @@[m
+         "node": ">=0.8.19"[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/invariant": {[m
+[32m+[m[32m      "version": "2.2.4",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/invariant/-/invariant-2.2.4.tgz",[m
+[32m+[m[32m      "integrity": "sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==",[m
+[32m+[m[32m      "license": "MIT",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "loose-envify": "^1.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/is-extglob": {[m
+       "version": "2.1.1",[m
+       "resolved": "https://registry.npmjs.org/is-extglob/-/is-extglob-2.1.1.tgz",[m
+[36m@@ -2183,7 +2193,6 @@[m
+       "version": "4.0.0",[m
+       "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",[m
+       "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==",[m
+[31m-      "dev": true,[m
+       "license": "MIT"[m
+     },[m
+     "node_modules/jsesc": {[m
+[36m@@ -2534,6 +2543,18 @@[m
+         "url": "https://github.com/sponsors/sindresorhus"[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/loose-envify": {[m
+[32m+[m[32m      "version": "1.4.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==",[m
+[32m+[m[32m      "license": "MIT",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "js-tokens": "^3.0.0 || ^4.0.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "bin": {[m
+[32m+[m[32m        "loose-envify": "cli.js"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/lru-cache": {[m
+       "version": "5.1.1",[m
+       "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-5.1.1.tgz",[m
+[36m@@ -2837,6 +2858,26 @@[m
+         "react": "^19.2.7"[m
+       }[m
+     },[m
+[32m+[m[32m    "node_modules/react-fast-compare": {[m
+[32m+[m[32m      "version": "3.2.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-3.2.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==",[m
+[32m+[m[32m      "license": "MIT"[m
+[32m+[m[32m    },[m
+[32m+[m[32m    "node_modules/react-helmet-async": {[m
+[32m+[m[32m      "version": "3.0.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/react-helmet-async/-/react-helmet-async-3.0.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-nA3IEZfXiclgrz4KLxAhqJqIfFDuvzQwlKwpdmzZIuC1KNSghDEIXmyU0TKtbM+NafnkICcwx8CECFrZ/sL/1w==",[m
+[32m+[m[32m      "license": "Apache-2.0",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "invariant": "^2.2.4",[m
+[32m+[m[32m        "react-fast-compare": "^3.2.2",[m
+[32m+[m[32m        "shallowequal": "^1.1.0"[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "peerDependencies": {[m
+[32m+[m[32m        "react": "^16.6.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/react-router": {[m
+       "version": "7.16.0",[m
+       "resolved": "https://registry.npmjs.org/react-router/-/react-router-7.16.0.tgz",[m
+[36m@@ -2930,6 +2971,12 @@[m
+       "integrity": "sha512-oeM1lpU/UvhTxw+g3cIfxXHyJRc/uidd3yK1P242gzHds0udQBYzs3y8j4gCCW+ZJ7ad0yctld8RYO+bdurlvw==",[m
+       "license": "MIT"[m
+     },[m
+[32m+[m[32m    "node_modules/shallowequal": {[m
+[32m+[m[32m      "version": "1.1.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/shallowequal/-/shallowequal-1.1.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==",[m
+[32m+[m[32m      "license": "MIT"[m
+[32m+[m[32m    },[m
+     "node_modules/shebang-command": {[m
+       "version": "2.0.0",[m
+       "resolved": "https://registry.npmjs.org/shebang-command/-/shebang-command-2.0.0.tgz",[m
+[1mdiff --git a/package.json b/package.json[m
+[1mindex a63b7af..adcc0d2 100644[m
+[1m--- a/package.json[m
+[1m+++ b/package.json[m
+[36m@@ -16,6 +16,7 @@[m
+     "lucide-react": "^1.17.0",[m
+     "react": "^19.2.6",[m
+     "react-dom": "^19.2.6",[m
+[32m+[m[32m    "react-helmet-async": "^3.0.0",[m
+     "react-router-dom": "^7.16.0"[m
+   },[m
+   "devDependencies": {[m
+[1mdiff --git a/src/App.jsx b/src/App.jsx[m
+[1mindex f45a9b6..e6fea1a 100644[m
+[1m--- a/src/App.jsx[m
+[1m+++ b/src/App.jsx[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-import React, { useState, useEffect } from 'react';[m
+[32m+[m[32mimport { useState, useEffect } from 'react';[m
+ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';[m
+ import { HelmetProvider } from 'react-helmet-async';[m
+ import Navbar from './components/Navbar';[m
+[1mdiff --git a/src/components/Footer.jsx b/src/components/Footer.jsx[m
+[1mindex 4d226eb..ef8c401 100644[m
+[1m--- a/src/components/Footer.jsx[m
+[1m+++ b/src/components/Footer.jsx[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-import React from 'react';[m
+[32m+[m
+ import { Link } from 'react-router-dom';[m
+ import { Globe, Music2, MessageSquare, Shield, Sparkles } from 'lucide-react';[m
+ import Logo from './Logo';[m
+[1mdiff --git a/src/components/LoadingScreen.jsx b/src/components/LoadingScreen.jsx[m
+[1mindex 356597a..ea2e7e1 100644[m
+[1m--- a/src/components/LoadingScreen.jsx[m
+[1m+++ b/src/components/LoadingScreen.jsx[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-import React from 'react';[m
+[32m+[m
+ import { motion } from 'framer-motion';[m
+ import Logo from './Logo';[m
+ [m
+[1mdiff --git a/src/components/Logo.jsx b/src/components/Logo.jsx[m
+[1mindex f936b8e..ce90853 100644[m
+[1m--- a/src/components/Logo.jsx[m
+[1m+++ b/src/components/Logo.jsx[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-import React from 'react';[m
+[32m+[m
+ [m
+ const Logo = ({ className = "w-10 h-10", glow = true }) => {[m
+   return ([m
+[1mdiff --git a/src/components/Navbar.jsx b/src/components/Navbar.jsx[m
+[1mindex b7d2d1b..8645c8c 100644[m
+[1m--- a/src/components/Navbar.jsx[m
+[1m+++ b/src/components/Navbar.jsx[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-import React, { useState } from 'react';[m
+[32m+[m[32mimport { useState } from 'react';[m
+ import { Link } from 'react-router-dom';[m
+ import { Search, User, Menu, X } from 'lucide-react';[m
+ import Logo from './Logo';[m
+[1mdiff --git a/src/components/SEO.jsx b/src/components/SEO.jsx[m
+[1mindex ddc1a16..47f9f8c 100644[m
+[1m--- a/src/components/SEO.jsx[m
+[1m+++ b/src/components/SEO.jsx[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-import React from 'react';[m
+[32m+[m
+ import { Helmet } from 'react-helmet-async';[m
+ [m
+ const SEO = ({ title, description, keywords, image, url }) => {[m
+[1mdiff --git a/src/pages/Auth.jsx b/src/pages/Auth.jsx[m
+[1mindex f5f53ea..d2cc43c 100644[m
+[1m--- a/src/pages/Auth.jsx[m
+[1m+++ b/src/pages/Auth.jsx[m
+[36m@@ -1,7 +1,5 @@[m
+[31m-import React, { useState } from 'react';[m
+[31m-import { motion } from 'framer-motion';[m
+[32m+[m[32mimport { useState } from 'react';[m
+ import { Mail, Lock, User, ArrowRight, Shield } from 'lucide-react';[m
+[31m-import { Link } from 'react-router-dom';[m
+ import SEO from '../components/SEO';[m
+ [m
+ const Auth = ({ mode = 'login' }) => {[m
+[1mdiff --git a/src/pages/Contact.jsx b/src/pages/Contact.jsx[m
+[1mindex 01b03d7..d5593ed 100644[m
+[1m--- a/src/pages/Contact.jsx[m
+[1m+++ b/src/pages/Contact.jsx[m
+[36m@@ -1,11 +1,7 @@[m
+[31m-import React, { useState } from 'react';[m
+[31m-import { motion } from 'framer-motion';[m
+[31m-import { Mail, MessageSquare, Send, MapPin, Phone } from 'lucide-react';[m
+[32m+[m[32mimport { Mail, MessageSquare, Send, MapPin } from 'lucide-react';[m
+ import SEO from '../components/SEO';[m
+ [m
+ const Contact = () => {[m
+[31m-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });[m
+[31m-[m
+   const handleSubmit = (e) => {[m
+     e.preventDefault();[m
+     alert('Message sent! Our team will get back to you shortly.');[m
+[1mdiff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx[m
+[1mindex 3cf7d10..fc34808 100644[m
+[1m--- a/src/pages/Gallery.jsx[m
+[1m+++ b/src/pages/Gallery.jsx[m
+[36m@@ -1,6 +1,6 @@[m
+[31m-import React, { useState } from 'react';[m
+[32m+[m[32mimport { useState, cloneElement } from 'react';[m
+ import { motion, AnimatePresence } from 'framer-motion';[m
+[31m-import { Filter, Download, Heart, Eye, Share2, Sparkles, ShieldCheck, Zap, Flame, Swords, Ghost, Cpu, User, Monitor } from 'lucide-react';[m
+[32m+[m[32mimport { Download, Heart, Eye, Share2, Sparkles, ShieldCheck, Zap, Swords, Ghost, Cpu, User, Monitor } from 'lucide-react';[m
+ import SEO from '../components/SEO';[m
+ [m
+ const CATEGORIES = ['All', 'Cyberpunk', 'Samurai', 'Dark Fantasy', 'Neon City', 'Mecha', 'Demon Hunter', 'Anime Girls', 'Glitchcore'];[m
+[36m@@ -142,7 +142,7 @@[m [mconst Gallery = () => {[m
+             className="flex items-center gap-4 px-6 py-4 bg-white/[0.02] border border-white/5 rounded-2xl shrink-0"[m
+           >[m
+             <div className="p-2 bg-brand-purple/10 rounded-lg text-brand-purple">[m
+[31m-              {React.cloneElement(stat.icon, { size: 18 })}[m
+[32m+[m[32m              {cloneElement(stat.icon, { size: 18 })}[m
+             </div>[m
+             <div>[m
+               <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{stat.label}</p>[m
+[36m@@ -259,4 +259,3 @@[m [mconst Gallery = () => {[m
+ };[m
+ [m
+ export default Gallery;[m
+[31m-// Triggering fresh deploy: Sat Jun  6 10:23:01 UTC 2026[m
+[1mdiff --git a/src/pages/Generate.jsx b/src/pages/Generate.jsx[m
+[1mindex cacab0f..6c3871c 100644[m
+[1m--- a/src/pages/Generate.jsx[m
+[1m+++ b/src/pages/Generate.jsx[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-import React, { useState } from 'react';[m
+[32m+[m[32mimport { useState } from 'react';[m
+ import { motion, AnimatePresence } from 'framer-motion';[m
+ import { Wand2, Sparkles, RefreshCcw, Download, Share2, Info, Layers, Zap } from 'lucide-react';[m
+ import SEO from '../components/SEO';[m
+[1mdiff --git a/src/pages/Home.jsx b/src/pages/Home.jsx[m
+[1mindex 9ca7c58..44e079a 100644[m
+[1m--- a/src/pages/Home.jsx[m
+[1m+++ b/src/pages/Home.jsx[m
+[36m@@ -1,6 +1,5 @@[m
+[31m-import React from 'react';[m
+ import { motion } from 'framer-motion';[m
+[31m-import { Sparkles, Zap, Shield, Image as ImageIcon, ArrowRight, Play, Star, ChevronRight } from 'lucide-react';[m
+[32m+[m[32mimport { Sparkles, Zap, Shield, Image as ImageIcon, Play, Star, ChevronRight } from 'lucide-react';[m
+ import { Link } from 'react-router-dom';[m
+ import SEO from '../components/SEO';[m
+ [m
+[1mdiff --git a/src/pages/Pricing.jsx b/src/pages/Pricing.jsx[m
+[1mindex 3188a08..299729c 100644[m
+[1m--- a/src/pages/Pricing.jsx[m
+[1m+++ b/src/pages/Pricing.jsx[m
+[36m@@ -1,6 +1,6 @@[m
+[31m-import React from 'react';[m
+ import { motion } from 'framer-motion';[m
+ import { Check, Zap, Sparkles, Crown } from 'lucide-react';[m
+[32m+[m[32mimport SEO from '../components/SEO';[m
+ [m
+ const Pricing = () => {[m
+   const plans = [[m

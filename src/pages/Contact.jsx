@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, MessageSquare, Send, MapPin, Phone } from 'lucide-react';
+import { Mail, MessageSquare, Send, MapPin } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-
   const handleSubmit = (e) => {
     e.preventDefault();
     alert('Message sent! Our team will get back to you shortly.');

@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Zap, Shield, Image as ImageIcon, ArrowRight, Play, Star, ChevronRight } from 'lucide-react';
+import { Sparkles, Zap, Shield, Image as ImageIcon, Play, Star, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 

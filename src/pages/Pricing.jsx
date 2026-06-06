@@ -1,6 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, Zap, Sparkles, Crown } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Pricing = () => {
   const plans = [

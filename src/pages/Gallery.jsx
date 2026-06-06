@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState, cloneElement } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Filter, Download, Heart, Eye, Share2, Sparkles, ShieldCheck, Zap, Flame, Swords, Ghost, Cpu, User, Monitor } from 'lucide-react';
+import { Download, Heart, Eye, Share2, Sparkles, ShieldCheck, Zap, Swords, Ghost, Cpu, User, Monitor } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const CATEGORIES = ['All', 'Cyberpunk', 'Samurai', 'Dark Fantasy', 'Neon City', 'Mecha', 'Demon Hunter', 'Anime Girls', 'Glitchcore'];
@@ -142,7 +142,7 @@ const Gallery = () => {
             className="flex items-center gap-4 px-6 py-4 bg-white/[0.02] border border-white/5 rounded-2xl shrink-0"
           >
             <div className="p-2 bg-brand-purple/10 rounded-lg text-brand-purple">
-              {React.cloneElement(stat.icon, { size: 18 })}
+              {cloneElement(stat.icon, { size: 18 })}
             </div>
             <div>
               <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{stat.label}</p>
@@ -259,4 +259,3 @@ const Gallery = () => {
 };
 
 export default Gallery;
-// Triggering fresh deploy: Sat Jun  6 10:23:01 UTC 2026
