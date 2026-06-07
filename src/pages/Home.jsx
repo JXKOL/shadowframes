@@ -1,9 +1,34 @@
 import { motion } from 'framer-motion';
-import { Sparkles, Zap, Shield, Image as ImageIcon, Play, Star, ChevronRight } from 'lucide-react';
+import { 
+  Sparkles, Zap, Shield, Image as ImageIcon, Play, Star, 
+  ChevronRight, Heart, Download, Flame, Trophy, TrendingUp 
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { useState, useEffect } from 'react';
+
+const TRENDING_ASSETS = [
+  { id: 1, title: 'Cyber Oni', cat: 'Cyberpunk', likes: '12.4k', downloads: '3.1k', rank: 1, url: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=800&auto=format&fit=crop' },
+  { id: 2, title: 'Neon Ronin', cat: 'Samurai', likes: '9.8k', downloads: '2.5k', rank: 2, url: 'https://images.unsplash.com/photo-1514467950441-249876274472?q=80&w=800&auto=format&fit=crop' },
+  { id: 3, title: 'Maiden 01', cat: 'Anime Girls', likes: '8.2k', downloads: '1.9k', rank: 3, url: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop' },
+  { id: 4, title: 'Void Rift', cat: 'Fantasy', likes: '7.5k', downloads: '1.5k', rank: 4, url: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=800&auto=format&fit=crop' },
+  { id: 5, title: 'Mech Soul', cat: 'Mecha', likes: '6.9k', downloads: '1.2k', rank: 5, url: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop' },
+  { id: 6, title: 'Neo Tokyo', cat: 'Cityscape', likes: '5.4k', downloads: '900', rank: 6, url: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=800&auto=format&fit=crop' },
+];
 
 const Home = () => {
+  const [stats, setStats] = useState({ activeUsers: 1240, generationsToday: 8942 });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStats(prev => ({
+        activeUsers: prev.activeUsers + Math.floor(Math.random() * 5) - 2,
+        generationsToday: prev.generationsToday + Math.floor(Math.random() * 3)
+      }));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen">
       <SEO 
@@ -24,7 +49,7 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-full animate-float">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-full">
               <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
               <span className="text-[10px] font-black tracking-[0.2em] uppercase text-gray-300">
                 The World's #1 Anime AI Forge
@@ -57,44 +82,104 @@ const Home = () => {
           </motion.div>
         </div>
 
-        {/* Featured Preview Grid */}
-        <div className="mt-32 max-w-[1400px] mx-auto">
-          <div className="flex items-end justify-between mb-12 px-4">
-            <div>
-              <h2 className="text-4xl font-black tracking-tighter mb-2 italic">TRENDING <span className="text-brand-purple">NOW</span></h2>
-              <div className="h-1.5 w-24 bg-brand-purple rounded-full" />
+        {/* Dynamic Stats Ticker */}
+        <div className="max-w-7xl mx-auto mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 px-4">
+          {[
+            { label: 'Active Links', value: stats.activeUsers.toLocaleString(), color: 'brand-purple' },
+            { label: 'Forge Operations', value: stats.generationsToday.toLocaleString(), color: 'brand-red' },
+            { label: 'Total Archives', value: '54,201', color: 'brand-purple' },
+            { label: 'Uptime', value: '99.99%', color: 'green-400' },
+          ].map((stat, i) => (
+            <div key={i} className="bg-white/[0.02] border border-white/5 rounded-2xl p-4 backdrop-blur-sm">
+              <p className="text-[9px] font-black uppercase tracking-widest text-gray-500 mb-1">{stat.label}</p>
+              <p className={`text-xl font-black text-${stat.color}`}>{stat.value}</p>
             </div>
-            <Link to="/gallery" className="flex items-center gap-2 text-sm font-black text-brand-purple hover:text-white transition-colors group">
-              VIEW FULL COLLECTION <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* NEW Trending Today Section */}
+      <section className="py-24 relative">
+        <div className="max-w-[1600px] mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <TrendingUp className="text-brand-purple" size={20} />
+                <span className="text-brand-purple font-black tracking-[0.3em] text-[10px] uppercase">Neural Hotlist</span>
+              </div>
+              <h2 className="text-5xl md:text-6xl font-black tracking-tighter leading-none italic">
+                TRENDING <span className="text-brand-purple text-glow-purple">TODAY</span>
+              </h2>
+            </div>
+            <div className="flex items-center gap-6">
+               <div className="hidden lg:flex items-center gap-8">
+                  <div className="flex flex-col items-end">
+                    <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Next Refresh</span>
+                    <span className="text-xs font-bold text-white tabular-nums">04:12:55</span>
+                  </div>
+               </div>
+               <Link to="/gallery" className="px-6 py-3 bg-brand-purple/10 border border-brand-purple/20 rounded-xl text-brand-purple text-xs font-black uppercase tracking-widest hover:bg-brand-purple hover:text-white transition-all">
+                 View All
+               </Link>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
-            {[
-              { title: 'Neon Samurai', cat: 'Samurai', url: 'https://images.unsplash.com/photo-1580234797602-22c37b2a6230?q=80&w=800&auto=format&fit=crop' },
-              { title: 'Cyber Maiden', cat: 'Cyberpunk', url: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop' },
-              { title: 'Void Wanderer', cat: 'Fantasy', url: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=800&auto=format&fit=crop' },
-              { title: 'Neural Link', cat: 'Mecha', url: 'https://images.unsplash.com/photo-1504333638930-c8787321eba0?q=80&w=800&auto=format&fit=crop' }
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="aspect-[3/4] rounded-[32px] bg-brand-black border border-white/5 overflow-hidden relative group glow-hover-purple shadow-2xl"
-              >
-                 <img src={item.url} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-110" alt={item.title} />
-                 <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/20 to-transparent opacity-80" />
-                 <div className="absolute bottom-8 left-8">
-                    <p className="text-[10px] font-black text-brand-purple uppercase tracking-[0.3em] mb-2">{item.cat}</p>
-                    <h3 className="text-2xl font-black tracking-tighter leading-none">{item.title}</h3>
-                 </div>
-                 <div className="absolute top-6 right-6 glass-premium px-3 py-1.5 rounded-full text-[9px] font-black tracking-widest text-brand-purple border-brand-purple/20 shadow-2xl">
-                    NEW RELEASE
-                 </div>
-              </motion.div>
-            ))}
+          {/* Horizontal Scroll Showcase */}
+          <div className="relative group">
+            <div className="flex gap-6 overflow-x-auto pb-12 pt-4 no-scrollbar snap-x snap-mandatory scroll-smooth">
+              {TRENDING_ASSETS.map((item, i) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="relative min-w-[280px] md:min-w-[340px] aspect-[3/4] rounded-[2.5rem] bg-brand-black border border-brand-white/5 overflow-hidden snap-start shadow-2xl group/card"
+                >
+                  <img 
+                    src={item.url} 
+                    alt={item.title} 
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110" 
+                  />
+                  
+                  {/* Neon Cyberpunk Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-90 group-hover/card:opacity-70 transition-opacity" />
+                  
+                  {/* Animated Badge */}
+                  <div className="absolute top-6 left-6 z-10">
+                    <motion.div 
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ repeat: Infinity, duration: 2 }}
+                      className="flex items-center gap-2 bg-brand-black/60 backdrop-blur-xl border border-brand-purple/30 px-3 py-2 rounded-2xl shadow-[0_0_20px_rgba(139,92,246,0.3)]"
+                    >
+                      {item.rank === 1 ? <Trophy size={14} className="text-yellow-400" /> : <Flame size={14} className="text-brand-red" />}
+                      <span className="text-[10px] font-black text-white uppercase">#{item.rank} TOP</span>
+                    </motion.div>
+                  </div>
+
+                  <div className="absolute bottom-0 inset-x-0 p-8 z-10">
+                    <p className="text-[9px] font-black text-brand-purple uppercase tracking-[0.4em] mb-2">{item.cat}</p>
+                    <h3 className="text-2xl font-black mb-6 tracking-tighter">{item.title}</h3>
+                    
+                    <div className="flex items-center gap-6">
+                      <div className="flex items-center gap-2">
+                        <Heart size={14} className="text-brand-red fill-brand-red" />
+                        <span className="text-xs font-bold text-white">{item.likes}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Download size={14} className="text-brand-blue" />
+                        <span className="text-xs font-bold text-white">{item.downloads}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Corner Accent */}
+                  <div className="absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-br from-transparent to-brand-purple/20 clip-path-slant" />
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Scroll Indication Shadow */}
+            <div className="absolute top-0 right-0 h-full w-32 bg-gradient-to-l from-brand-black to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
         </div>
       </section>
