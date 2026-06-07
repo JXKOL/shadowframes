@@ -8,32 +8,11 @@ export const generateImage = async (params, retryCount = 0) => {
 
   // Fallback to Pollinations AI if no HF Token is provided (Free, No Token Required)
   if (!HF_TOKEN) {
-    console.info("Hugging Face token missing. Engaging Pollinations Neural Bridge...");
-    
-    // Construct Pollinations URL
-    const cleanPrompt = prompt.slice(0, 400);
-    const encodedPrompt = encodeURIComponent(`${cleanPrompt}, masterpiece, best quality, highres, anime style`);
+    const cleanPrompt = prompt.slice(0, 350); 
+    const encodedPrompt = encodeURIComponent(`${cleanPrompt}, high quality anime style, masterpiece`);
     const seed = Math.floor(Math.random() * 1000000);
-    const pollinationsUrl = `https://pollinations.ai/p/${encodedPrompt}?width=${width}&height=${height}&seed=${seed}&nologo=true`;
-    
-    try {
-      console.info("Fetching from Neural Bridge...");
-      const response = await fetch(pollinationsUrl);
-      if (!response.ok) throw new Error(`BRIDGE_ERROR: ${response.status}`);
-      
-      const blob = await response.blob();
-      if (blob.size < 1000) throw new Error("BRIDGE_CORRUPTION: Data cluster too small.");
-      
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(blob);
-      });
-    } catch (error) {
-      console.error("Neural Bridge Failed:", error);
-      return pollinationsUrl;
-    }
+    // Direct URL is most reliable for Sandbox/Pollinations
+    return `https://pollinations.ai/p/${encodedPrompt}?width=${width}&height=${height}&seed=${seed}&nologo=true&model=flux`;
   }
 
   // Real Hugging Face Logic

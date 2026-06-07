@@ -81,6 +81,7 @@ const Generate = () => {
                           aspectRatio === '1:1' ? [1024, 1024] : [832, 1024];
 
     try {
+      console.log("Starting generation...");
       const imageUrl = await generateImage({
         prompt: `${selectedStyle} style, ${prompt}`,
         negative_prompt: negativePrompt,
@@ -88,6 +89,8 @@ const Generate = () => {
         height,
         guidance_scale: styleIntensity
       });
+
+      console.log("Image URL received:", imageUrl);
 
       if (!imageUrl || typeof imageUrl !== 'string') {
         throw new Error("FORGE_EMPTY: The engine returned an empty link.");
@@ -126,6 +129,9 @@ const Generate = () => {
 
   return (
     <div className="pt-28 pb-20 px-6 max-w-[1600px] mx-auto min-h-screen">
+      <div className="fixed bottom-4 left-4 z-50 text-[8px] font-black text-brand-purple/40 uppercase tracking-[0.3em] pointer-events-none">
+        Forge Protocol v4.0.1 • Neural Sync Stable
+      </div>
       <SEO 
         title="Neural Forge Studio | ShadowFrames" 
         description="Access the high-fidelity Animagine XL 3.1 engine to generate exclusive anime art."
@@ -269,17 +275,17 @@ const Generate = () => {
                     <img 
                       key={result}
                       src={result} 
-                      alt="Synthesized Neural Frame" 
+                      alt="NEURAL_RENDER_V4" 
                       onLoad={() => {
-                        console.log("Image loaded successfully:", result);
+                        console.log("Materialization complete.");
                         setIsImageLoading(false);
                       }}
                       onError={(e) => {
-                        console.error("Image load failed:", result);
+                        console.error("Materialization failed.");
                         setIsImageLoading(false);
-                        setError("LINK_CORRUPTION: The generated frame failed to materialize. This can happen if the neural bridge is unstable. Please try again.");
+                        setError("LINK_CORRUPTION: The neural stream was interrupted. Please try a different prompt or reset the system.");
                       }}
-                      className={`w-full h-full object-cover transition-opacity duration-700 ${isImageLoading ? 'opacity-0' : 'opacity-100'}`} 
+                      className="w-full h-full object-cover" 
                     />
                     
                     {isImageLoading && (
@@ -288,8 +294,7 @@ const Generate = () => {
                            <div className="absolute inset-0 border-4 border-brand-purple/20 rounded-full" />
                            <div className="absolute inset-0 border-4 border-brand-purple border-t-transparent rounded-full animate-spin" />
                         </div>
-                        <p className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-purple animate-pulse">Materializing Pixels...</p>
-                        <p className="text-[8px] text-brand-gray mt-4 font-bold uppercase tracking-widest">Awaiting Neural Stream</p>
+                        <p className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-purple animate-pulse">Materializing...</p>
                       </div>
                     )}
 
@@ -299,16 +304,16 @@ const Generate = () => {
                         <div className="absolute bottom-8 inset-x-8">
                            <div className="glass-premium p-6 rounded-[2.5rem] flex items-center justify-between border-brand-purple/20">
                               <div>
-                                <h4 className="text-xs font-black mb-1 tracking-widest uppercase">SYNC SUCCESSFUL</h4>
-                                <p className="text-[9px] text-brand-purple font-bold tracking-[0.3em] uppercase">LINK STABLE • 8K</p>
+                                <h4 className="text-xs font-black mb-1 tracking-widest uppercase">SYNCHRONIZED</h4>
+                                <p className="text-[9px] text-brand-purple font-bold tracking-[0.3em] uppercase">V4 • DIRECT LINK</p>
                               </div>
                               <div className="flex gap-2">
+                                <a href={result} target="_blank" rel="noreferrer" className="p-3 bg-white/10 text-white rounded-xl hover:bg-brand-purple transition-all shadow-xl">
+                                  <Zap size={18} />
+                                </a>
                                 <a href={result} download="shadowframe.png" className="p-3 bg-white text-brand-black rounded-xl hover:bg-brand-purple hover:text-white transition-all shadow-xl">
                                   <Download size={18} />
                                 </a>
-                                <button onClick={() => { navigator.clipboard.writeText(result); alert("Link copied."); }} className="p-3 glass rounded-xl hover:bg-white/10 transition-all">
-                                  <Share2 size={18} />
-                                </button>
                               </div>
                            </div>
                         </div>
