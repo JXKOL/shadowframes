@@ -10,15 +10,30 @@ export const generateImage = async (params, retryCount = 0) => {
   if (!HF_TOKEN) {
     console.info("Hugging Face token missing. Engaging Pollinations Neural Bridge...");
     
-    // Construct Pollinations URL with anime modifiers
-    const cleanPrompt = prompt.slice(0, 400); // Cap length for stability
+    // Construct Pollinations URL
+    const cleanPrompt = prompt.slice(0, 400);
     const encodedPrompt = encodeURIComponent(`${cleanPrompt}, masterpiece, best quality, highres, anime style`);
     const seed = Math.floor(Math.random() * 1000000);
-    const pollinationsUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${width}&height=${height}&seed=${seed}&nologo=true`;
+    const pollinationsUrl = `https://pollinations.ai/p/${encodedPrompt}?width=${width}&height=${height}&seed=${seed}&nologo=true`;
     
-    // Simulate a bit of "processing" for the UI feel, then return the URL
-    await sleep(3000); 
-    return pollinationsUrl;
+    try {
+      console.info("Fetching from Neural Bridge...");
+      const response = await fetch(pollinationsUrl);
+      if (!response.ok) throw new Error(`BRIDGE_ERROR: ${response.status}`);
+      
+      const blob = await response.blob();
+      if (blob.size < 1000) throw new Error("BRIDGE_CORRUPTION: Data cluster too small.");
+      
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    } catch (error) {
+      console.error("Neural Bridge Failed:", error);
+      return pollinationsUrl;
+    }
   }
 
   // Real Hugging Face Logic
@@ -27,7 +42,7 @@ export const generateImage = async (params, retryCount = 0) => {
   const enhancedNegative = `${negative_prompt || ""}, lowres, bad anatomy, bad hands, text, error, blurry`;
 
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 60000);
+  const timeoutId = setTimeout(() => controller.abort(), 90000); // 90s for HF
 
   try {
     const response = await fetch(
@@ -77,11 +92,16 @@ export const generateImage = async (params, retryCount = 0) => {
 
     const blob = await response.blob();
     if (blob.size < 1000) {
-      // Too small to be a real image, might be a hidden error
       const text = await blob.text();
-      throw new Error(`FORGE_CORRUPTION: Received invalid data cluster. ${text.slice(0, 50)}`);
+      throw new Error(`FORGE_CORRUPTION: Received invalid data. ${text.slice(0, 50)}`);
     }
-    return URL.createObjectURL(blob);
+    
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
   } catch (error) {
     clearTimeout(timeoutId);
     if (error.name === 'AbortError') throw new Error("FORGE_TIMEOUT");

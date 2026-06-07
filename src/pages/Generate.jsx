@@ -212,9 +212,22 @@ const Generate = () => {
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="flex items-start gap-3 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl text-red-400 text-[10px] font-bold"
+                className="space-y-3"
               >
-                <AlertCircle size={16} className="shrink-0" /> {error}
+                <div className="flex items-start gap-3 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl text-red-400 text-[10px] font-bold">
+                  <AlertCircle size={16} className="shrink-0" /> {error}
+                </div>
+                <button 
+                  onClick={() => {
+                    setError(null);
+                    setResult(null);
+                    setIsGenerating(false);
+                    setIsImageLoading(false);
+                  }}
+                  className="w-full py-2 text-[9px] font-black uppercase tracking-widest text-brand-gray hover:text-white transition-colors"
+                >
+                  Neural System Reset
+                </button>
               </motion.div>
             )}
 
