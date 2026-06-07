@@ -11,7 +11,8 @@ export const generateImage = async (params, retryCount = 0) => {
     console.info("Hugging Face token missing. Engaging Pollinations Neural Bridge...");
     
     // Construct Pollinations URL with anime modifiers
-    const encodedPrompt = encodeURIComponent(`${prompt}, masterpiece, best quality, highres, anime style`);
+    const cleanPrompt = prompt.slice(0, 400); // Cap length for stability
+    const encodedPrompt = encodeURIComponent(`${cleanPrompt}, masterpiece, best quality, highres, anime style`);
     const seed = Math.floor(Math.random() * 1000000);
     const pollinationsUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${width}&height=${height}&seed=${seed}&nologo=true`;
     
@@ -68,7 +69,18 @@ export const generateImage = async (params, retryCount = 0) => {
       throw new Error(`FORGE_ERROR: API status ${response.status}`);
     }
 
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+       const data = await response.json();
+       if (data.error) throw new Error(`NEURAL_ERROR: ${data.error}`);
+    }
+
     const blob = await response.blob();
+    if (blob.size < 1000) {
+      // Too small to be a real image, might be a hidden error
+      const text = await blob.text();
+      throw new Error(`FORGE_CORRUPTION: Received invalid data cluster. ${text.slice(0, 50)}`);
+    }
     return URL.createObjectURL(blob);
   } catch (error) {
     clearTimeout(timeoutId);

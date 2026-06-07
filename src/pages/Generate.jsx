@@ -31,11 +31,16 @@ const Generate = () => {
   const [error, setError] = useState(null);
   const [generationStep, setGenerationStep] = useState(0);
   const [isSandbox, setIsSandbox] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(false);
 
   useEffect(() => {
+    setIsSandbox(!import.meta.env.VITE_HF_TOKEN);
     const savedHistory = localStorage.getItem('shadow_forge_history');
     if (savedHistory) {
-      setHistory(JSON.parse(savedHistory));
+      // Filter out blob URLs from previous sessions since they expire
+      const parsed = JSON.parse(savedHistory);
+      const filtered = parsed.filter(item => !item.url.startsWith('blob:'));
+      setHistory(filtered);
     }
   }, []);
 
@@ -84,7 +89,15 @@ const Generate = () => {
         guidance_scale: styleIntensity
       });
 
+      if (!imageUrl || typeof imageUrl !== 'string') {
+        throw new Error("FORGE_EMPTY: The engine returned an empty link.");
+      }
+
       setResult(imageUrl);
+      setIsImageLoading(true);
+      
+      // Fallback timer to prevent infinite loading screen
+      setTimeout(() => setIsImageLoading(false), 15000);
       
       const newEntry = {
         id: Date.now(),
@@ -95,7 +108,10 @@ const Generate = () => {
       
       const updatedHistory = [newEntry, ...history].slice(0, 15);
       setHistory(updatedHistory);
-      localStorage.setItem('shadow_forge_history', JSON.stringify(updatedHistory));
+      
+      // Only persist non-blob URLs (Pollinations) to localStorage
+      const persistentHistory = updatedHistory.filter(item => !item.url.startsWith('blob:'));
+      localStorage.setItem('shadow_forge_history', JSON.stringify(persistentHistory));
     } catch (err) {
       setError(err.message || "FORGE_FAILURE: Connection lost.");
     } finally {
@@ -229,32 +245,62 @@ const Generate = () => {
         {/* Center: Output */}
         <div className="xl:col-span-5">
            <div className="relative aspect-[3/4] xl:h-[800px] bg-brand-black/50 rounded-[3.5rem] border border-brand-white/10 overflow-hidden flex items-center justify-center group shadow-2xl">
-              <AnimatePresence mode="wait">
+              <AnimatePresence>
                 {result ? (
                   <motion.div 
-                    key="result"
-                    initial={{ opacity: 0, filter: 'blur(20px)' }}
-                    animate={{ opacity: 1, filter: 'blur(0px)' }}
+                    key={`result-${result}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
                     className="absolute inset-0"
                   >
-                    <img src={result} alt="Generated" className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-60" />
-                    <div className="absolute bottom-8 inset-x-8">
-                       <div className="glass-premium p-6 rounded-[2.5rem] flex items-center justify-between border-brand-purple/20">
-                          <div>
-                            <h4 className="text-xs font-black mb-1 tracking-widest uppercase">SYNC SUCCESSFUL</h4>
-                            <p className="text-[9px] text-brand-purple font-bold tracking-[0.3em] uppercase">LINK STABLE • 8K</p>
-                          </div>
-                          <div className="flex gap-2">
-                            <a href={result} download="shadowframe.png" className="p-3 bg-white text-brand-black rounded-xl hover:bg-brand-purple hover:text-white transition-all shadow-xl">
-                              <Download size={18} />
-                            </a>
-                            <button onClick={() => { navigator.clipboard.writeText(result); alert("Link copied."); }} className="p-3 glass rounded-xl hover:bg-white/10 transition-all">
-                              <Share2 size={18} />
-                            </button>
-                          </div>
-                       </div>
-                    </div>
+                    <img 
+                      key={result}
+                      src={result} 
+                      alt="Synthesized Neural Frame" 
+                      onLoad={() => {
+                        console.log("Image loaded successfully:", result);
+                        setIsImageLoading(false);
+                      }}
+                      onError={(e) => {
+                        console.error("Image load failed:", result);
+                        setIsImageLoading(false);
+                        setError("LINK_CORRUPTION: The generated frame failed to materialize. This can happen if the neural bridge is unstable. Please try again.");
+                      }}
+                      className={`w-full h-full object-cover transition-opacity duration-700 ${isImageLoading ? 'opacity-0' : 'opacity-100'}`} 
+                    />
+                    
+                    {isImageLoading && (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center bg-brand-black/90 backdrop-blur-xl">
+                        <div className="relative w-20 h-20 mb-6">
+                           <div className="absolute inset-0 border-4 border-brand-purple/20 rounded-full" />
+                           <div className="absolute inset-0 border-4 border-brand-purple border-t-transparent rounded-full animate-spin" />
+                        </div>
+                        <p className="text-[10px] font-black tracking-[0.4em] uppercase text-brand-purple animate-pulse">Materializing Pixels...</p>
+                        <p className="text-[8px] text-brand-gray mt-4 font-bold uppercase tracking-widest">Awaiting Neural Stream</p>
+                      </div>
+                    )}
+
+                    {!isImageLoading && (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-60" />
+                        <div className="absolute bottom-8 inset-x-8">
+                           <div className="glass-premium p-6 rounded-[2.5rem] flex items-center justify-between border-brand-purple/20">
+                              <div>
+                                <h4 className="text-xs font-black mb-1 tracking-widest uppercase">SYNC SUCCESSFUL</h4>
+                                <p className="text-[9px] text-brand-purple font-bold tracking-[0.3em] uppercase">LINK STABLE • 8K</p>
+                              </div>
+                              <div className="flex gap-2">
+                                <a href={result} download="shadowframe.png" className="p-3 bg-white text-brand-black rounded-xl hover:bg-brand-purple hover:text-white transition-all shadow-xl">
+                                  <Download size={18} />
+                                </a>
+                                <button onClick={() => { navigator.clipboard.writeText(result); alert("Link copied."); }} className="p-3 glass rounded-xl hover:bg-white/10 transition-all">
+                                  <Share2 size={18} />
+                                </button>
+                              </div>
+                           </div>
+                        </div>
+                      </>
+                    )}
                   </motion.div>
                 ) : isGenerating ? (
                   <motion.div 
